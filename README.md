@@ -18,13 +18,15 @@ It will include concepts such as user accounts. Picking a character as your avat
 - Github set up
 - Server Running
 
-  **To Do**
-  - Finish Assets
-  - Multiplayer chat
-  - Type Racer
-  - Multiplayer Lobby
+**To Do**
+- Finish Assets
+- Multiplayer chat
+- Type Racer
+- Multiplayer Lobby
+- User Accounts
 
-  **Canceled**
+**Canceled**
+-
 
 **Product Goal**
 “Brozone is developing a Trolls typeracer where players compete with other players on the typing speed and accuracy of the movie scripts of Trolls Band Together. By the end of March, our type racer will support troll character picking, type racer with the Trolls Band Together movie script, monitoring functionalities, like speed, accuracy and typing efficiency, user account, and main lobby chat function to create a fun game advertising and uniting the Trolls fandom together and improve universal typing efficiency. Troll Talk will become a leading touch-typing practice website for trolls and typing enthusiasts looking to enhance their typing skills effectively.”
