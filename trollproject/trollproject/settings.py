@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne', # added daphne
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trollapp',
+    
+    'channels', # added channels
 ]
+
+CHANNEL_LAYERS = { # added channel layers
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
+LOGIN_REDIRECT_URL = "lobby" #added
+
+LOGOUT_REDIRECT_URL = "login-user" #added
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'trollproject.wsgi.application'
-
+ASGI_APPLICATION = 'trollproject.asgi.application' # Added ASGI
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
