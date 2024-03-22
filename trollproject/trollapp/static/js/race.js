@@ -9,8 +9,8 @@ const textBoxElement = document.querySelector(".textBox");
 
 // When the textbox goes out of focus when user clicks out of it, refocus it
 // So that the user can continue typing on the textbox
-textBox.addEventListener("blur", () => {
-    textBox.focus();
+textBoxElement.addEventListener("blur", () => {
+    textBoxElement.focus();
 });
 
 /* Function handle input is called everytime the textbox has an oninput event,
@@ -35,7 +35,7 @@ function handleInput(text) {
         if (i < text.length && origText.charAt(i) === text.charAt(i)) {
             charSpan.classList.add("correct");
         }
-
+        
         typedTextElement.appendChild(charSpan);
     }
 
@@ -45,3 +45,6 @@ function handleInput(text) {
 
 // Call the function once on start to reset everything
 handleInput("");
+
+
+
