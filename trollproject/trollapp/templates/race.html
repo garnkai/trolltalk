@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/css/styleRace.css">
+</head>
+<body>
+    <h1>Typing Race</h1>
+    <h2>{{request.user}}</h2>
+
+    <br/>
+    <p>Type the text you see:</p>
+    
+    <input class="textBox" value="" oninput="handleInput(this.value)" autofocus></input>
+  
+    <div class="typedText">
+        <span id="typedTextContent"></span>
+        <div id="cursor" class="cursor"></div> 
+    </div>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

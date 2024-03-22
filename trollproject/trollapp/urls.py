@@ -9,4 +9,5 @@ urlpatterns = [
     path("auth/login/", LoginView.as_view #changed
          (template_name="login.html"), name="login-user"), #changed
     path("auth/logout/", LogoutView.as_view(), name="logout-user"),
+    path("race/", views.race, name="race"),
 ]
