@@ -16,6 +16,7 @@ textBoxElement.addEventListener("blur", () => {
 /* Function handle input is called everytime the textbox has an oninput event,
 so everytime 
 */
+
 function handleInput(text) {
     //console.log("textInput: " + text);
     const origText = "Hello this is a typing test.";
@@ -28,18 +29,44 @@ function handleInput(text) {
     If the character typed in the textbox is correct, then set the visible font
     to correct (green), add the spans to the span/div*/
     typedTextElement.innerHTML = "";
+    let mistake = false;
     for (let i = 0; i < origText.length; i++) {
         const charSpan = document.createElement("span");
         charSpan.textContent = origText.charAt(i);
 
-        if (i < text.length && origText.charAt(i) === text.charAt(i)) {
-            charSpan.classList.add("correct");
+        if (i >= text.length) {
+            // default text (black), has not been typed yet
+            charSpan.classList.add("default"); // green
+        } 
+        else {
+            // If a mistake happened, the following text is red
+            if (mistake) {
+                charSpan.classList.add("mistake");
+            } 
+            else {
+                if (i < text.length && origText.charAt(i) === text.charAt(i)) {
+                    charSpan.classList.add("correct"); // green
+                }
+                else {
+                    // Set mistake to the index
+                    mistake = true;
+                    charSpan.classList.add("mistake");
+                }
+            }
         }
-        
+
         typedTextElement.appendChild(charSpan);
+
+        // Check for win
+        if (text.length == origText.length && !mistake) {
+            // Typing is over, hide typingContent show endContent
+            document.querySelector("#typingContent").classList.add("hidden");
+            //document.querySelector("#typingContent").remove();
+            document.querySelector("#endContent").classList.remove("hidden");
+        }
     }
 
-    const cursorPosition = text.length * 30; 
+    const cursorPosition = text.length * 15; 
     cursorElement.style.left = `${cursorPosition}px`;
 }
 

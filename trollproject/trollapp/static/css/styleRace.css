@@ -17,6 +17,12 @@
 .correct {
    color: lightgreen;
 }
+.mistake {
+    color: red;
+ }
+ .default {
+    color: black;
+ }
 
 .cursor {
    position: absolute;
@@ -27,4 +33,8 @@
    left: 0;
    /*Add a transition for a smooth cursor movement effect*/
    transition: left 0.3s ease; 
+}
+
+.hidden {
+    visibility: hidden;
 }

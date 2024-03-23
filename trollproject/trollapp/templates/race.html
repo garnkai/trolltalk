@@ -8,14 +8,21 @@
     <h2>{{request.user}}</h2>
 
     <br/>
-    <p>Type the text you see:</p>
+    <div id="typingContent">
+        <p>Type the text you see:</p>
     
-    <input class="textBox" value="" oninput="handleInput(this.value)" autofocus></input>
-  
-    <div class="typedText">
-        <span id="typedTextContent"></span>
-        <div id="cursor" class="cursor"></div> 
+        <input class="textBox" value="" oninput="handleInput(this.value)" autofocus></input>
+    
+        <div class="typedText">
+            <span id="typedTextContent"></span>
+            <div id="cursor" class="cursor"></div> 
+        </div>
     </div>
+    <div id="endContent" class="hidden">
+        <h2>You win!</h2>
+        <h3>Your typing speed is: </h3>
+    </div>
+    
 
     <script src="../static/js/race.js"></script>
 </body>
