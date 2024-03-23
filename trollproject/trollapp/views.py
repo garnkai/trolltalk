@@ -6,3 +6,5 @@ def lobby(request): # Added function
     context = {}
     return render(request, "lobby.html", context) # changed
 
+def race(request):
+    return render(request, "race.html")
