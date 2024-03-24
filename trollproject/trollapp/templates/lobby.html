@@ -41,7 +41,9 @@
 	<h3>Choose a Lobby:</h3>
     <ul>
         {% for lobby in lobbies %}
-            <li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }} **Game Mode: {{ lobby.game_mode }}, Max Players:{{ lobby.num_players }}**</a></li>
+			{% if lobby.privacy == 'public' %}
+            	<li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }}----{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</a></li>
+			{% endif %}
         {% empty %}
             <li>No lobbies available.</li>
         {% endfor %}
