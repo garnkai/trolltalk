@@ -12,6 +12,9 @@
       		<a class="navbar-brand" href="{% url 'lobby' %}">
 				<img src="static/TrollTalk Logo.png" alt="" width="40" height="40">
 			</a>
+            <a class="navbar-brand" href="{% url 'lobby' %}">
+                <h2>Troll Talk</h2>
+            </a>
 			<h2>{{request.user}}</h2>
 			{% if request.user.is_authenticated %}
                 <a href = "{% url 'logout-user' %}">Logout</a>
