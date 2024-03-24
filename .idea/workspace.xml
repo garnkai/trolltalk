@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f7f4bd7-b6da-43bb-bbd5-784f2fd2db97" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/trolltalk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/trolltalk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/importLines.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollproject/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,23 +26,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "iWillCry",
-    "last_opened_file_path": "C:/Users/kaitl/PycharmProjects/trolltalk/trollproject/trollapp/static/typeLines.csv",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenDatabaseViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;iWillCry&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kaitl/PycharmProjects/trolltalk/trollproject/trollapp/static/typeLines.csv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -65,7 +62,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711290959450</updated>
-      <workItem from="1711290962117" duration="103000" />
+      <workItem from="1711290962117" duration="365000" />
+      <workItem from="1711291685032" duration="21000" />
     </task>
     <servers />
   </component>
