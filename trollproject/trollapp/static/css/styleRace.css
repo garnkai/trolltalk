@@ -1,0 +1,40 @@
+.textBox {
+    /*display: none;*/  
+    /* When the display is hidden, the user cannot type. To fix this,
+    The text box can be visually hidden but still remain by setting its position off screen*/
+    position: absolute; 
+    left: -9999px;
+}
+
+.typedText {
+   font-size: 30px;
+   width: 500px;
+   height: 100px;
+   vertical-align: top;
+   position: relative;
+}
+
+.correct {
+   color: lightgreen;
+}
+.mistake {
+    color: red;
+ }
+ .default {
+    color: black;
+ }
+
+.cursor {
+   position: absolute;
+   height: 30px;
+   width: 2px;
+   background-color: black;
+   top: 0;
+   left: 0;
+   /*Add a transition for a smooth cursor movement effect*/
+   transition: left 0.3s ease; 
+}
+
+.hidden {
+    visibility: hidden;
+}
