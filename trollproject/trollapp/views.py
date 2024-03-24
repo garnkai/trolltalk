@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Lobby
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def homepage(request):
     return render(request, "homepage.html")
 def lobby(request): # Added function
