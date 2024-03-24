@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Lobby
 from django.db import IntegrityError
 
+
+def homepage(request):
+    return render(request, "homepage.html")
 def lobby(request): # Added function
     if not request.user.is_authenticated:
         return redirect("login-user")

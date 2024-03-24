@@ -9,3 +9,8 @@ class Lobby(models.Model):
 
     def __str__(self):
         return self.lobby_id
+# Create your models here.
+
+class LinesForTyping (models.Model):
+    Character = models.CharField(max_length=25)
+    Line = models.TextField()
