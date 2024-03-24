@@ -14,9 +14,14 @@
 	</div>
 
 	<br/> <br/>
-    <button id="race" onclick="window.location.href='{% url \'race\' %}'">TypeRace Now</button>
+	<button onclick="startRace()">TypeRace Now</button>
 
 	<script>
+	// Go to Race game
+	function startRace() {
+        window.location.href = "{% url 'race' %}";
+    }
+	
     // WebSocket Chat Code taken from https://www.geeksforgeeks.org/realtime-chat-app-using-django/
 	const websocketId = "{{ lobby_id }}"; // Set the WebSocket ID
 	const chatSocket = new WebSocket(`ws://${window.location.host}/ws/${websocketId}/`);

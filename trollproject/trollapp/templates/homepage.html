@@ -31,9 +31,15 @@
     <button id="JD">John Dory</button>
   </div>
   <div class ="start">
-      <button id="play" onclick="window.location.href='{% url \'lobby\' %}'">PLAY</button>
+    
+    <button onclick="goToLobby()">PLAY</button>
   </div>
   <p> Pick a character and type out their lines as fast as you can. </p>
 
+  <script>
+    function goToLobby() {
+        window.location.href = "{% url 'lobby' %}";
+    }
+    </script>
 </body>
 </html>
