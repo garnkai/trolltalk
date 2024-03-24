@@ -51,12 +51,62 @@
 
 	<script>
 
+/*
 	function joinLobby() {
 		var lobbyId = document.getElementById("lobby_id_input").value;
 		if (lobbyId) {
-			window.location.href = `/joinedLobby/${lobbyId}/`;
+			// Using ajax make an async request to check if the lobby id exists in one of the lobby models
+			var r = new XMLHttpRequest();
+			r.open("GET", `/check_lobby/${lobbyId}/`, true);
+			r.onreadystatechange = function () {
+				if (r.readyState === 4) {
+					if (r.status === 200) {
+						// If the id exists in one of the models go to joined lobby page
+						window.location.href = `/joinedLobby/${lobbyId}/`;
+					} else {
+						// If does not exist, use an alert to tell user that lobby with id not found
+						alert("Lobby not found, ID does not exist. Try again.");
+					}
+				}
+			};
+        	r.send();
+		}
+	}*/
+	// Tried using ajax and making an async request to check for the id, however this did not work
+	// Using fetch instead
+	// fetch code https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+	function joinLobby() {
+		var lobbyId = document.getElementById("lobby_id_input").value;
+		if (lobbyId) {
+			// check in the view because all the model logic is in the python views
+			var url = `/check_lobby/${lobbyId}/`;
+			fetch(url)
+			// Check for network error
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network error. Try again.');
+				}
+				return response.json();
+			})
+			// No network error, worked correctly
+			.then(data => {
+				// no network error, check happened correctly
+				if (data.exists) {
+					// If the id exists in one of the models go to joined lobby page
+					window.location.href = `/joinedLobby/${lobbyId}/`;
+				} else {
+					// If does not exist, use an alert to tell user that lobby with id not found
+					alert("Lobby not found, ID does not exist. Try again.");
+				}
+			})
+			// else some error happened
+			.catch(error => {
+				alert("Fetch error. Try again.");
+				console.error('Fetch error: ', error);
+			});
 		}
 	}
+
 
 
     // WebSocket Chat Code taken from https://www.geeksforgeeks.org/realtime-chat-app-using-django/

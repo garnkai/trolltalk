@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Lobby
 from django.db import IntegrityError
-
+from django.http import JsonResponse
 
 def homepage(request):
     return render(request, "homepage.html")
@@ -65,3 +65,10 @@ def create_lobby(request):
     # the error alert does not work im not sure why
     return render(request, 'create_lobby.html', {'error_message': error_message})
     
+
+# Function to check if lobby with id exists or not, returns a bool
+def check_lobby(request, lobby_id):
+    if Lobby.objects.filter(id=lobby_id).exists():
+        return JsonResponse({'exists': True})
+    else:
+        return JsonResponse({'exists': False})

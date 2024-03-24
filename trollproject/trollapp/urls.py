@@ -18,5 +18,7 @@ urlpatterns = [
 
     path('create-lobby/', views.create_lobby_page, name='create-lobby-page'),
     path('create-lobby/action', views.create_lobby, name='create-lobby-action'),
+
+    path('check_lobby/<int:lobby_id>/', views.check_lobby, name='check_lobby'),
     
 ]
