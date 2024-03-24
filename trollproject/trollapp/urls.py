@@ -3,7 +3,8 @@ from trollapp import views
 from django.contrib.auth.views import LoginView, LogoutView
  
 urlpatterns = [
-    path("", views.lobby, name="lobby"),
+    path("", views.homepage, name="homepage"),
+    path("lobby/", views.lobby, name="lobby"),
  
     # login-section
     path("auth/login/", LoginView.as_view #changed
