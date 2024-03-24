@@ -14,3 +14,8 @@ class Lobby(models.Model):
 class LinesForTyping (models.Model):
     Character = models.CharField(max_length=25)
     Line = models.TextField()
+<<<<<<< HEAD
+    class Meta:
+        app_label = 'trollapp'
+=======
+>>>>>>> 3761babbe7cc10c194ab5ef1bd31389cba865916
