@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<h1>Game Lobby</h1>
+	<h1>Joined Lobby Name: {{ lobby_name }}, Lobby Id: {{ lobby_id }}</h1>
     <h2>{{request.user}}</h2>
 
 	{% if request.user.is_authenticated %}
@@ -13,42 +13,11 @@
         <button type="submit" id="id_message_send_button">Send Message</button>
 	</div>
 
-	
-
-	
-
-	<h3>Enter Lobby ID to Join:</h3>
-    <input type="text" id="lobby_id_input" />
-    <button onclick="joinLobby()">Join Lobby</button>
-
-	<br/>
-	<h2><a href="{% url 'create-lobby-page' %}">Create a Lobby</a></h2>
-	
-
-	Reload the page to refresh lobby list
-	<h3>Choose a Lobby:</h3>
-    <ul>
-        {% for lobby in lobbies %}
-            <li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }} **Game Mode: {{ lobby.game_mode }}, Max Players:{{ lobby.num_players }}**</a></li>
-        {% empty %}
-            <li>No lobbies available.</li>
-        {% endfor %}
-    </ul>
 
 
 	<script>
-
-	function joinLobby() {
-		var lobbyId = document.getElementById("lobby_id_input").value;
-		if (lobbyId) {
-			window.location.href = `/joinedLobby/${lobbyId}/`;
-		}
-	}
-
-
     // WebSocket Chat Code taken from https://www.geeksforgeeks.org/realtime-chat-app-using-django/
-	//const chatSocket = new WebSocket("ws://" + window.location.host + "/");
-	const websocketId = "lobby"; // Set the WebSocket ID
+	const websocketId = "{{ lobby_id }}"; // Set the WebSocket ID
 	const chatSocket = new WebSocket(`ws://${window.location.host}/ws/${websocketId}/`);
 	chatSocket.onopen = function (e) {
 		console.log("The connection was setup successfully!");
@@ -76,5 +45,6 @@
 		document.querySelector("#id_chat_item_container").appendChild(div);
 	};
 	</script>
+    
 </body>
 </html>

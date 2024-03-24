@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Create Lobby</h1>
+    <!--<script>alert("test");</script>-->
+    {% if error_message %}
+    <!--Alert does not show up for some reason, so I will just have a static text 
+    that you should not have duplicate names-->
+        <script>alert("{{ error_message }}");</script>
+    {% endif %}
+    <!--{{ error_message }}-->
+    Enter a unique lobby name. Entering a duplicate name that already exists
+    results in the page refreshing to try again.
+    <h2>Enter options:</h2>
+    <form action="{% url 'create-lobby-action' %}" method="post">
+        {% csrf_token %}
+        <label for="lobby_name">Lobby Name:</label>
+        <input type="text" id="lobby_name" name="lobby_name" required><br>
+        
+        <label for="num_players">Max Players:</label>
+        <select id="num_players" name="num_players">
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+        <br>
+
+        <label for="game_mode">Gamemode:</label>
+        <select id="game_mode" name="game_mode">
+            <option value="Branch">Branch</option>
+            <option value="Poppy">Poppy</option>
+            <option value="Floyd">Floyd</option>
+        </select>
+        <br>
+        
+        <label for="privacy">Privacy:</label>
+        <select id="privacy" name="privacy">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+        </select>
+        <br>
+        
+        <button type="submit">Create Lobby</button>
+
+        <a href = "{% url 'lobby' %}">Back</a>
+    </form>
+</body>
+</html>
