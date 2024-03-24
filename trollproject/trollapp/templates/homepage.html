@@ -14,7 +14,7 @@
 			</a>
 			<h2>{{request.user}}</h2>
 			{% if request.user.is_authenticated %}
-				<a href = "{% url 'logout-user' %}">Logout</a>
+                <a href = "{% url 'logout-user' %}">Logout</a>
 			{% endif %}
     	</div>
   	</nav>
