@@ -12,6 +12,7 @@
         <a href = "{% url 'logout-user' %}">Logout</a>
     {% endif %}
 	<h1>Game Lobby</h1>
+	<div id="connectedUsersElement">Connected Users:</div>
     <h3>Chat with other players:</h3>
 	<div class="chat__item__container" id="id_chat_item_container" style="font-size: 30px">
         <input type="text" id="id_message_send_input" />
@@ -34,21 +35,110 @@
 	<h3>Choose a Lobby:</h3>
     <ul>
         {% for lobby in lobbies %}
-            <li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }} **Game Mode: {{ lobby.game_mode }}, Max Players:{{ lobby.num_players }}**</a></li>
+			{% if lobby.privacy == 'public' and lobby.playersJoined < lobby.num_players %}
+            	<!--<li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }}----
+					{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</a></li>-->
+					
+				<li><button onclick="joinLobbyInList({{ lobby.id }})">{{ lobby.lobby_name }}----
+					{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</button></li>
+			{% endif %}
         {% empty %}
-            <li>No lobbies available.</li>
+            <li>No lobbies.</li>
         {% endfor %}
     </ul>
 
     
 
 	<script>
+	function joinLobbyInList(lobbyId) {
+		console.log("join lobby with id " + lobbyId);
+		increasePlayersJoined(lobbyId);
 
+
+		window.location.href = `/joinedLobby/${lobbyId}/`;
+    }
+
+/*
 	function joinLobby() {
 		var lobbyId = document.getElementById("lobby_id_input").value;
 		if (lobbyId) {
-			window.location.href = `/joinedLobby/${lobbyId}/`;
+			// Using ajax make an async request to check if the lobby id exists in one of the lobby models
+			var r = new XMLHttpRequest();
+			r.open("GET", `/check_lobby/${lobbyId}/`, true);
+			r.onreadystatechange = function () {
+				if (r.readyState === 4) {
+					if (r.status === 200) {
+						// If the id exists in one of the models go to joined lobby page
+						window.location.href = `/joinedLobby/${lobbyId}/`;
+					} else {
+						// If does not exist, use an alert to tell user that lobby with id not found
+						alert("Lobby not found, ID does not exist. Try again.");
+					}
+				}
+			};
+        	r.send();
 		}
+	}*/
+	// Tried using ajax and making an async request to check for the id, however this did not work
+	// Using fetch instead
+	// fetch code https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+	function joinLobby() {
+		var lobbyId = document.getElementById("lobby_id_input").value;
+		if (lobbyId) {
+			// check in the view because all the model logic is in the python views
+			var url = `/check_lobby/${lobbyId}/`;
+			fetch(url)
+			// Check for network error
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network error. Try again.');
+				}
+				return response.json();
+			})
+			// No network error, worked correctly
+			.then(data => {
+				// no network error, check happened correctly
+				if (data.exists) {
+					// If the id exists in one of the models go to joined lobby page
+					
+					// Only join if there is space in the lobby
+					if (data.playersJoined < data.num_players) {
+                    	increasePlayersJoined(lobbyId);
+                    	window.location.href = `/joinedLobby/${lobbyId}/`;
+					} else {
+						alert("Lobby is full. Cannot join.");
+					}
+					
+
+
+					window.location.href = `/joinedLobby/${lobbyId}/`;
+				} else {
+					// If does not exist, use an alert to tell user that lobby with id not found
+					alert("Lobby not found, ID does not exist. Try again.");
+				}
+			})
+			// else some error happened
+			.catch(error => {
+				alert("Fetch error. Try again.");
+				console.error('Fetch error: ', error);
+			});
+		}
+	}
+
+	// Increase player count by 1
+	// similar as checking if lobby id exists, call a function in views and fetch
+	function increasePlayersJoined(lobbyId) {
+		//var url = `/increase_players_joined/${lobbyId}/`;
+		var url = `/update_players_joined/${lobbyId}/?action=increase`;
+		fetch(url)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network error. Try again.');
+				}
+			})
+			.catch(error => {
+				console.error('Fetch error: ', error);
+			});
 	}
 
 
@@ -56,9 +146,50 @@
 	//const chatSocket = new WebSocket("ws://" + window.location.host + "/");
 	const websocketId = "lobby"; // Set the WebSocket ID
 	const chatSocket = new WebSocket(`ws://${window.location.host}/ws/${websocketId}/`);
+
 	chatSocket.onopen = function (e) {
 		console.log("The connection was setup successfully!");
 	};
+
+
+	const connectedUsersElement = document.getElementById("connectedUsersElement");
+	chatSocket.onmessage = function (e) {
+		/*
+		const data = JSON.parse(e.data);
+		var div = document.createElement("div");
+		div.innerHTML = data.username + " : " + data.message;
+
+		// show the connected users
+		var connectedUsers = data.connected_users.join(", ");
+		connectedUsersElement.innerHTML = "Connected users: " + connectedUsers;
+		//document.body.insertBefore(connectedUsersDiv, document.querySelector(".chat__item__container"));
+
+		document.querySelector("#id_message_send_input").value = "";
+		document.querySelector("#id_chat_item_container").appendChild(div);*/
+
+		// kept old code in case i mess something up
+		const data = JSON.parse(e.data);
+            var div = document.createElement("div");
+            div.innerHTML = data.username + " : " + data.message;
+            document.querySelector("#id_message_send_input").value = "";
+            document.querySelector("#id_chat_item_container").appendChild(div);
+            var connectedUsersElement = document.getElementById("connectedUsersElement");
+            connectedUsersElement.innerHTML = "Connected Users:<br />";
+            var connectedUsers = data.connected_users;
+
+			// loop through all the connected users and append them in a list to display
+            connectedUsers.forEach(function(user) {
+                var listItem = document.createElement("li");
+                listItem.textContent = user;
+                connectedUsersElement.appendChild(listItem);
+            });
+        
+			
+	};
+
+
+
+	
 	chatSocket.onclose = function (e) {
 		console.log("Something unexpected happened!");
 	};
@@ -74,13 +205,18 @@
 		).value;
 		chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
 	};
+	/*
 	chatSocket.onmessage = function (e) {
 		const data = JSON.parse(e.data);
 		var div = document.createElement("div");
 		div.innerHTML = data.username + " : " + data.message;
 		document.querySelector("#id_message_send_input").value = "";
 		document.querySelector("#id_chat_item_container").appendChild(div);
-	};
+	};*/
+
+
+
+	
 	</script>
 </body>
 </html>
