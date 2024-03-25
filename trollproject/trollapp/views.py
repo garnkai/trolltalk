@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
 from .models import Lobby
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from .forms import *
 
 @login_required
 def homepage(request):
@@ -46,7 +49,7 @@ def create_lobby(request):
         privacy = request.POST.get('privacy')
         
         # Error where lobby name can already exist in a model,
-        # so it cannot be create because name must be unique
+        # so it cannot be created because name must be unique
 
         try:
             existing_lobby = Lobby.objects.get(lobby_name=lobby_name)
@@ -65,4 +68,26 @@ def create_lobby(request):
 
     # the error alert does not work im not sure why
     return render(request, 'create_lobby.html', {'error_message': error_message})
-    
+
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('homepage')
+    else:
+       if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+       return render(request, 'login.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = createuserform(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('login-user')
+    else:
+        form = createuserform()
+    return render(request, 'signup.html', {'form': form})
