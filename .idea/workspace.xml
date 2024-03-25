@@ -33,7 +33,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;linesType&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;makeLinesAppear&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/kaitl/PycharmProjects/trolltalk/trollproject/trollapp/static/typeLines.csv&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -66,6 +66,8 @@
       <workItem from="1711290962117" duration="365000" />
       <workItem from="1711291685032" duration="21000" />
       <workItem from="1711315492952" duration="15698000" />
+      <workItem from="1711334481549" duration="558000" />
+      <workItem from="1711368621602" duration="338000" />
     </task>
     <servers />
   </component>
