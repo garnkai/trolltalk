@@ -1,3 +1,6 @@
+{% extends 'NavBarBase.html' %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +9,7 @@
     <title>Troll Talk</title>
 </head>
 <body>
-    <a class="navbar-brand" href="{% url 'homepage' %}">
-        <img src="static/TrollTalk Logo.png" alt="" width="40" height="40">
-    </a>
-    <a class="navbar-brand" href="{% url 'homepage' %}">
-        <p>Troll Talk</p>
-    </a>
-    <p>{{request.user}}</p>
-    {% if request.user.is_authenticated %}
-        <a href = "{% url 'logout-user' %}">Logout</a>
-    {% endif %}
+
 <!--<img src="../../../trolltalk.png" alt="Troll Talk" class="flexImg">-->
   <br>
   <div class="buttons">
@@ -27,7 +21,7 @@
   </div>
   <div class ="start">
     
-    <button onclick="goToLobby()">PLAY</button>
+    <button id="play" onclick="goToLobby()">PLAY</button>
   </div>
   <p> Pick a character and type out their lines as fast as you can. </p>
 
@@ -37,4 +31,6 @@
     }
     </script>
 </body>
+
 </html>
+{% endblock %}
