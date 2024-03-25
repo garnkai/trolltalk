@@ -122,7 +122,6 @@ def get_lobby(request, lobby_id):
     lines = list(LinesForTyping.objects.filter(Character=lobbyType).values('Line'))
     return JsonResponse(lines, safe=False)
 
-
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('homepage')
