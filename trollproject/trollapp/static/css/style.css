@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  background-color: #7a28cd;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #7a28cd;
 }
+
+.trolls {
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+
+
+}
+/*
 p {
   color: #F7F0F5;
   text-align: center;
@@ -61,3 +77,4 @@ button{
   height: 5rem;
   object-fit: contain;
 }
+*/
