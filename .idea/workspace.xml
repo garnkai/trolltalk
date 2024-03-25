@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8f7f4bd7-b6da-43bb-bbd5-784f2fd2db97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trollproject/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;iWillCry&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;linesType&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/kaitl/PycharmProjects/trolltalk/trollproject/trollapp/static/typeLines.csv&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -64,6 +65,7 @@
       <updated>1711290959450</updated>
       <workItem from="1711290962117" duration="365000" />
       <workItem from="1711291685032" duration="21000" />
+      <workItem from="1711315492952" duration="15698000" />
     </task>
     <servers />
   </component>

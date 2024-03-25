@@ -4,8 +4,14 @@ instantly change back to the original text value, but at the current index chang
 Once type an incorrect character, the rest of the letters should be red or incorrect too
 To do this, a mistake bool will probably be used to keep track is user has made a 
 mistake yet or not*/
-            
 const textBoxElement = document.querySelector(".textBox");
+let lines=[];
+lastID = window.location.href.lastIndexOf('/')
+mstr = window.location.href
+endURL = mstr.substring(mstr.lastIndexOf('/') + 1)
+url = 'get_lobby/'+endURL
+let typeLine;
+
 
 // When the textbox goes out of focus when user clicks out of it, refocus it
 // So that the user can continue typing on the textbox
@@ -13,13 +19,34 @@ textBoxElement.addEventListener("blur", () => {
     textBoxElement.focus();
 });
 
+
+function randomLine(){
+    numOfLines = lines.length
+    lineId = Math.round(Math.random() * (numOfLines))
+    console.log(lineId)
+    typeLine = lines[lineId].Line
+    console.log(typeLine)
+    return
+}
 /* Function handle input is called everytime the textbox has an oninput event,
 so everytime 
 */
 
+fetch(url)
+    .then(response=> response.json())
+    .then (data =>{
+        lines = data
+        console.log("fetch worked", lines)
+        randomLine()
+        handleInput("")
+    })
+    .catch(error => console.error('Error', error))
+
+
+
 function handleInput(text) {
     //console.log("textInput: " + text);
-    const origText = "Hello this is a typing test.";
+    const origText = typeLine
     const typedTextElement = document.getElementById("typedTextContent");
     const cursorElement = document.getElementById("cursor");
 
@@ -71,7 +98,4 @@ function handleInput(text) {
 }
 
 // Call the function once on start to reset everything
-handleInput("");
-
-
 
