@@ -20,5 +20,5 @@ urlpatterns = [
     path('create-lobby/action', views.create_lobby, name='create-lobby-action'),
 
     path('check_lobby/<int:lobby_id>/', views.check_lobby, name='check_lobby'),
-    
+    path('increase_players_joined/<int:lobby_id>/', views.increase_players_joined, name='increase_players_joined'),
 ]

@@ -72,3 +72,13 @@ def check_lobby(request, lobby_id):
         return JsonResponse({'exists': True})
     else:
         return JsonResponse({'exists': False})
+
+# function to increase player count by one
+def increase_players_joined(request, lobby_id):
+    try:
+        lobby = Lobby.objects.get(id=lobby_id)
+        lobby.playersJoined += 1
+        lobby.save()
+        return JsonResponse({'success': True})
+    except Lobby.DoesNotExist:
+        return JsonResponse({'success': False})

@@ -42,16 +42,27 @@
     <ul>
         {% for lobby in lobbies %}
 			{% if lobby.privacy == 'public' %}
-            	<li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }}----{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</a></li>
+            	<!--<li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }}----
+					{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</a></li>-->
+					
+				<li><button onclick="joinLobbyInList({{ lobby.id }})">{{ lobby.lobby_name }}----
+					{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</button></li>
 			{% endif %}
         {% empty %}
-            <li>No lobbies available.</li>
+            <li>No lobbies.</li>
         {% endfor %}
     </ul>
 
     
 
 	<script>
+	function joinLobbyInList(lobbyId) {
+		console.log("join lobby with id " + lobbyId);
+		increasePlayersJoined(lobbyId);
+
+
+		window.location.href = `/joinedLobby/${lobbyId}/`;
+    }
 
 /*
 	function joinLobby() {
@@ -95,6 +106,10 @@
 				// no network error, check happened correctly
 				if (data.exists) {
 					// If the id exists in one of the models go to joined lobby page
+					
+					increasePlayersJoined(lobbyId);
+
+
 					window.location.href = `/joinedLobby/${lobbyId}/`;
 				} else {
 					// If does not exist, use an alert to tell user that lobby with id not found
@@ -109,6 +124,20 @@
 		}
 	}
 
+	// Increase player count by 1
+	// similar as checking if lobby id exists, call a function in views and fetch
+	function increasePlayersJoined(lobbyId) {
+		var url = `/increase_players_joined/${lobbyId}/`;
+		fetch(url)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Network error. Try again.');
+				}
+			})
+			.catch(error => {
+				console.error('Fetch error: ', error);
+			});
+	}
 
 
     // WebSocket Chat Code taken from https://www.geeksforgeeks.org/realtime-chat-app-using-django/
