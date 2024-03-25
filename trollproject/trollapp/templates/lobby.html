@@ -19,6 +19,7 @@
     	</div>
   	</nav>
 	<h1>Game Lobby</h1>
+	<div id="connectedUsersElement">Connected Users:</div>
     <h3>Chat with other players:</h3>
 	<div class="chat__item__container" id="id_chat_item_container" style="font-size: 30px">
         <input type="text" id="id_message_send_input" />
@@ -41,7 +42,7 @@
 	<h3>Choose a Lobby:</h3>
     <ul>
         {% for lobby in lobbies %}
-			{% if lobby.privacy == 'public' %}
+			{% if lobby.privacy == 'public' and lobby.playersJoined < lobby.num_players %}
             	<!--<li><a href="{% url 'joinedLobby' lobby.id %}">{{ lobby.lobby_name }}----
 					{{lobby.playersJoined}}/{{lobby.num_players}}----Game Mode: {{ lobby.game_mode }}</a></li>-->
 					
@@ -107,7 +108,14 @@
 				if (data.exists) {
 					// If the id exists in one of the models go to joined lobby page
 					
-					increasePlayersJoined(lobbyId);
+					// Only join if there is space in the lobby
+					if (data.playersJoined < data.num_players) {
+                    	increasePlayersJoined(lobbyId);
+                    	window.location.href = `/joinedLobby/${lobbyId}/`;
+					} else {
+						alert("Lobby is full. Cannot join.");
+					}
+					
 
 
 					window.location.href = `/joinedLobby/${lobbyId}/`;
@@ -127,7 +135,8 @@
 	// Increase player count by 1
 	// similar as checking if lobby id exists, call a function in views and fetch
 	function increasePlayersJoined(lobbyId) {
-		var url = `/increase_players_joined/${lobbyId}/`;
+		//var url = `/increase_players_joined/${lobbyId}/`;
+		var url = `/update_players_joined/${lobbyId}/?action=increase`;
 		fetch(url)
 			.then(response => {
 				if (!response.ok) {
@@ -144,9 +153,50 @@
 	//const chatSocket = new WebSocket("ws://" + window.location.host + "/");
 	const websocketId = "lobby"; // Set the WebSocket ID
 	const chatSocket = new WebSocket(`ws://${window.location.host}/ws/${websocketId}/`);
+
 	chatSocket.onopen = function (e) {
 		console.log("The connection was setup successfully!");
 	};
+
+
+	const connectedUsersElement = document.getElementById("connectedUsersElement");
+	chatSocket.onmessage = function (e) {
+		/*
+		const data = JSON.parse(e.data);
+		var div = document.createElement("div");
+		div.innerHTML = data.username + " : " + data.message;
+
+		// show the connected users
+		var connectedUsers = data.connected_users.join(", ");
+		connectedUsersElement.innerHTML = "Connected users: " + connectedUsers;
+		//document.body.insertBefore(connectedUsersDiv, document.querySelector(".chat__item__container"));
+
+		document.querySelector("#id_message_send_input").value = "";
+		document.querySelector("#id_chat_item_container").appendChild(div);*/
+
+		// kept old code in case i mess something up
+		const data = JSON.parse(e.data);
+            var div = document.createElement("div");
+            div.innerHTML = data.username + " : " + data.message;
+            document.querySelector("#id_message_send_input").value = "";
+            document.querySelector("#id_chat_item_container").appendChild(div);
+            var connectedUsersElement = document.getElementById("connectedUsersElement");
+            connectedUsersElement.innerHTML = "Connected Users:<br />";
+            var connectedUsers = data.connected_users;
+
+			// loop through all the connected users and append them in a list to display
+            connectedUsers.forEach(function(user) {
+                var listItem = document.createElement("li");
+                listItem.textContent = user;
+                connectedUsersElement.appendChild(listItem);
+            });
+        
+			
+	};
+
+
+
+	
 	chatSocket.onclose = function (e) {
 		console.log("Something unexpected happened!");
 	};
@@ -162,13 +212,18 @@
 		).value;
 		chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
 	};
+	/*
 	chatSocket.onmessage = function (e) {
 		const data = JSON.parse(e.data);
 		var div = document.createElement("div");
 		div.innerHTML = data.username + " : " + data.message;
 		document.querySelector("#id_message_send_input").value = "";
 		document.querySelector("#id_chat_item_container").appendChild(div);
-	};
+	};*/
+
+
+
+	
 	</script>
 </body>
 </html>

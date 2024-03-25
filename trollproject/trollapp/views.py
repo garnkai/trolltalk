@@ -74,10 +74,29 @@ def check_lobby(request, lobby_id):
         return JsonResponse({'exists': False})
 
 # function to increase player count by one
+'''
 def increase_players_joined(request, lobby_id):
     try:
         lobby = Lobby.objects.get(id=lobby_id)
         lobby.playersJoined += 1
+        lobby.save()
+        return JsonResponse({'success': True})
+    except Lobby.DoesNotExist:
+        return JsonResponse({'success': False})'''
+
+# I also need to decrease, so instead change the function to update
+# the player count instead, allowing both increasing and decreasing
+def update_players_joined(request, lobby_id, action):
+    try:
+        lobby = Lobby.objects.get(id=lobby_id)
+        if action == 'increase':
+            lobby.playersJoined += 1
+        elif action == 'decrease':
+            lobby.playersJoined -= 1
+            # Make sure the player count doesnt go less than 0, 
+            # placeholder because when the count is 0 the model should delete
+            if lobby.playersJoined < 0:
+                lobby.playersJoined = 0
         lobby.save()
         return JsonResponse({'success': True})
     except Lobby.DoesNotExist:
