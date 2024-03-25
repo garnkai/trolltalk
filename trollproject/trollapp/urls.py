@@ -12,7 +12,7 @@ urlpatterns = [
     path("accounts/login/", LoginView.as_view #changed
          (template_name="login.html"), name="login-user"), #changed
     path("auth/logout/", LogoutView.as_view(), name="logout-user"),
-    #path("race/<int:lobby_id>", views.race, name="race"),
+    path("race/<int:lobby_id>", views.race, name="race"),
     path("auth/signup/", views.signup, name="signup"),
 
     # lobbies
