@@ -5,11 +5,17 @@ Once type an incorrect character, the rest of the letters should be red or incor
 To do this, a mistake bool will probably be used to keep track is user has made a 
 mistake yet or not*/
 const textBoxElement = document.querySelector(".textBox");
+
+//global list of lines
 let lines=[];
+
+//gets the id of lobby
 lastID = window.location.href.lastIndexOf('/')
 mstr = window.location.href
 endURL = mstr.substring(mstr.lastIndexOf('/') + 1)
+//sets the url to the proper one
 url = 'get_lobby/'+endURL
+//make global for line typed
 let typeLine;
 
 
@@ -19,24 +25,31 @@ textBoxElement.addEventListener("blur", () => {
     textBoxElement.focus();
 });
 
-
+//picks a random line from the lobbies character
 function randomLine(){
+    //finds length
     numOfLines = lines.length
+    //picks a random index
     lineId = Math.round(Math.random() * (numOfLines))
+    //testing
     console.log(lineId)
+    //sets global line to the line in the list
     typeLine = lines[lineId].Line
     console.log(typeLine)
-    return
 }
 /* Function handle input is called everytime the textbox has an oninput event,
 so everytime 
 */
 
+//fetches the info from lobby set up
 fetch(url)
     .then(response=> response.json())
     .then (data =>{
+        //makes list from data
         lines = data
+        //testing
         console.log("fetch worked", lines)
+        //calls our two functions
         randomLine()
         handleInput("")
     })
@@ -96,6 +109,4 @@ function handleInput(text) {
     const cursorPosition = text.length * 15; 
     cursorElement.style.left = `${cursorPosition}px`;
 }
-
-// Call the function once on start to reset everything
 
