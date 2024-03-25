@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <html lang="en">
 <head>
@@ -9,8 +10,21 @@
 <body>
 <!--<img src="../../../trolltalk.png" alt="Troll Talk" class="flexImg">-->
   <br>
+  <div class="trolls">
+    <div class="container">
+      <div class="container-inner">
+        <div class="circle">
+          <img id="P" src="{% static 'images/TrollTalk_Logo.png' %}" alt="" width="40" height="40">
+        </div>
+      </div>
+    </div>
+    <div class="divider">
+      <h1>Poppy</h1>
+    </div>
+  </div>
+
   <div class="buttons">
-    <button id="P">Poppy</button>
+    <!--<button id="P">Poppy</button>-->
     <button id="B">Branch</button>
     <button id="F">Floyd</button>
     <button id="V">Viva</button>
