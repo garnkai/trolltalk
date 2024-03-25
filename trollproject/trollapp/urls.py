@@ -9,7 +9,7 @@ urlpatterns = [
     path("lobby/", views.lobby, name="lobby"),
  
     # login-section
-    path("auth/login/", LoginView.as_view #changed
+    path("accounts/login/", LoginView.as_view #changed
          (template_name="login.html"), name="login-user"), #changed
     path("auth/logout/", LogoutView.as_view(), name="logout-user"),
     path("auth/signup/", views.signup, name="signup"),
