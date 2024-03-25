@@ -1,10 +1,19 @@
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
 from .models import Lobby, LinesForTyping
 from django.db import IntegrityError
 from django.http import JsonResponse
 
+=======
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
+from .models import Lobby
+from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
+from .forms import *
+>>>>>>> 0d5c2db18ad773b13a0d165e3cb6253f62846f97
 
-
+@login_required
 def homepage(request):
     return render(request, "homepage.html")
 def lobby(request): # Added function
@@ -48,7 +57,7 @@ def create_lobby(request):
         privacy = request.POST.get('privacy')
         
         # Error where lobby name can already exist in a model,
-        # so it cannot be create because name must be unique
+        # so it cannot be created because name must be unique
 
         try:
             existing_lobby = Lobby.objects.get(lobby_name=lobby_name)
@@ -68,6 +77,7 @@ def create_lobby(request):
     # the error alert does not work im not sure why
     return render(request, 'create_lobby.html', {'error_message': error_message})
 
+<<<<<<< HEAD
 def get_lobby(request, lobby_id):
     #gets lobby's id
     lobby = Lobby.objects.get(id=lobby_id)
@@ -78,3 +88,27 @@ def get_lobby(request, lobby_id):
     #gets lines that belong to the gamemode
     lines = list(LinesForTyping.objects.filter(Character=lobbyType).values('Line'))
     return JsonResponse(lines, safe=False)
+=======
+def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('homepage')
+    else:
+       if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+       return render(request, 'login.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = createuserform(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('login-user')
+    else:
+        form = createuserform()
+    return render(request, 'signup.html', {'form': form})
+>>>>>>> 0d5c2db18ad773b13a0d165e3cb6253f62846f97
