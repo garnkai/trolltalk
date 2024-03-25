@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
+    <a class="navbar-brand" href="{% url 'homepage' %}">
+        <img src="static/TrollTalk Logo.png" alt="" width="40" height="40">
+    </a>
+    <a class="navbar-brand" href="{% url 'homepage' %}">
+        <p>Troll Talk</p>
+    </a>
+    <p>{{request.user}}</p>
+    {% if request.user.is_authenticated %}
+        <a href = "{% url 'logout-user' %}">Logout</a>
+    {% endif %}
     <h1>Create Lobby</h1>
     <!--<script>alert("test");</script>-->
     {% if error_message %}
@@ -31,6 +41,8 @@
             <option value="Branch">Branch</option>
             <option value="Poppy">Poppy</option>
             <option value="Floyd">Floyd</option>
+            <option value="Viva">Viva</option>
+            <option value="John Dory">John Dory</option>
         </select>
         <br>
         

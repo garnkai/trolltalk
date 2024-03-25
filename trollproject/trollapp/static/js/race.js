@@ -4,8 +4,20 @@ instantly change back to the original text value, but at the current index chang
 Once type an incorrect character, the rest of the letters should be red or incorrect too
 To do this, a mistake bool will probably be used to keep track is user has made a 
 mistake yet or not*/
-            
 const textBoxElement = document.querySelector(".textBox");
+
+//global list of lines
+let lines=[];
+
+//gets the id of lobby
+lastID = window.location.href.lastIndexOf('/')
+mstr = window.location.href
+endURL = mstr.substring(mstr.lastIndexOf('/') + 1)
+//sets the url to the proper one
+url = 'get_lobby/'+endURL
+//make global for line typed
+let typeLine;
+
 
 // When the textbox goes out of focus when user clicks out of it, refocus it
 // So that the user can continue typing on the textbox
@@ -13,13 +25,41 @@ textBoxElement.addEventListener("blur", () => {
     textBoxElement.focus();
 });
 
+//picks a random line from the lobbies character
+function randomLine(){
+    //finds length
+    numOfLines = lines.length
+    //picks a random index
+    lineId = Math.round(Math.random() * (numOfLines))
+    //testing
+    console.log(lineId)
+    //sets global line to the line in the list
+    typeLine = lines[lineId].Line
+    console.log(typeLine)
+}
 /* Function handle input is called everytime the textbox has an oninput event,
 so everytime 
 */
 
+//fetches the info from lobby set up
+fetch(url)
+    .then(response=> response.json())
+    .then (data =>{
+        //makes list from data
+        lines = data
+        //testing
+        console.log("fetch worked", lines)
+        //calls our two functions
+        randomLine()
+        handleInput("")
+    })
+    .catch(error => console.error('Error', error))
+
+
+
 function handleInput(text) {
     //console.log("textInput: " + text);
-    const origText = "Hello this is a typing test.";
+    const origText = typeLine
     const typedTextElement = document.getElementById("typedTextContent");
     const cursorElement = document.getElementById("cursor");
 
@@ -69,9 +109,4 @@ function handleInput(text) {
     const cursorPosition = text.length * 15; 
     cursorElement.style.left = `${cursorPosition}px`;
 }
-
-// Call the function once on start to reset everything
-handleInput("");
-
-
 
