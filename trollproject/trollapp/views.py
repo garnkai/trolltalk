@@ -1,17 +1,14 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .models import Lobby, LinesForTyping
 from django.db import IntegrityError
 from django.http import JsonResponse
 
-=======
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Lobby
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .forms import *
->>>>>>> 0d5c2db18ad773b13a0d165e3cb6253f62846f97
 
 @login_required
 def homepage(request):
@@ -24,13 +21,11 @@ def lobby(request): # Added function
     return render(request, "lobby.html", context) # changed
 
 def race(request, lobby_id):
-
     return render(request, 'race.html',)
 
 # rooms
 def joinedLobby(request, lobby_id):
     #lobby_id = request.GET.get('lobby_id')
-
 
     #return render(request, "lobby1.html")
     #return render(request, "joinedLobby.html", {"lobby_id": lobby_id})
@@ -77,18 +72,16 @@ def create_lobby(request):
     # the error alert does not work im not sure why
     return render(request, 'create_lobby.html', {'error_message': error_message})
 
-<<<<<<< HEAD
 def get_lobby(request, lobby_id):
     #gets lobby's id
     lobby = Lobby.objects.get(id=lobby_id)
-
     #gets its game mode
     lobbyType =lobby.game_mode
-
     #gets lines that belong to the gamemode
     lines = list(LinesForTyping.objects.filter(Character=lobbyType).values('Line'))
     return JsonResponse(lines, safe=False)
-=======
+
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('homepage')

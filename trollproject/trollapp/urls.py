@@ -12,21 +12,12 @@ urlpatterns = [
     path("auth/login/", LoginView.as_view #changed
          (template_name="login.html"), name="login-user"), #changed
     path("auth/logout/", LogoutView.as_view(), name="logout-user"),
-<<<<<<< HEAD
     path("race/<int:lobby_id>", views.race, name="race"),
-=======
     path("auth/signup/", views.signup, name="signup"),
-    path("race/", views.race, name="race"),
->>>>>>> 0d5c2db18ad773b13a0d165e3cb6253f62846f97
-
 
     # lobbies
     path('joinedLobby/<int:lobby_id>/', views.joinedLobby, name='joinedLobby'),
-
     path('create-lobby/', views.create_lobby_page, name='create-lobby-page'),
     path('create-lobby/action', views.create_lobby, name='create-lobby-action'),
-<<<<<<< HEAD
     path('race/get_lobby/<int:lobby_id>', views.get_lobby, name='get_lobby'),
-=======
->>>>>>> 0d5c2db18ad773b13a0d165e3cb6253f62846f97
 ]
