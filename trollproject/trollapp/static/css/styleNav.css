@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+nav{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 10px 90px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .navbar-brand{
+    padding: 22px 20px;
+    height: 80px;
+    float: left;
+}
+
+nav .navbar{
+    list-style: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav .navbar li a{
+    padding: 12px 30px;
+    text-decoration: none;
+    list-style: none;
+
+}

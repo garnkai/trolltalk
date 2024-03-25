@@ -1,0 +1,21 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/styleNav.css">
+    <title>Troll Talk</title>
+</head>
+<nav>
+    <a class="navbar-brand" href="{% url 'homepage' %}">
+        <img src="{% static 'images/TrollTalk_Logo.png' %}" alt="" width="40" height="40">
+        <span>Troll Talk</span>
+    </a>
+
+    <ul class="navbar">
+        <li><a>{{request.user}}</a></li>
+        <li>
+            {% if request.user.is_authenticated %}
+                <a href = "{% url 'logout-user' %}">Logout</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
