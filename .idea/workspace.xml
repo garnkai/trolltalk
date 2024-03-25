@@ -7,11 +7,6 @@
     <list default="true" id="8f7f4bd7-b6da-43bb-bbd5-784f2fd2db97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trollproject/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/static/js/race.js" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/static/js/race.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/templates/create_lobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/templates/create_lobby.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/templates/joinedLobby.html" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/templates/joinedLobby.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trollproject/trollapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/trollproject/trollapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +65,7 @@
       <updated>1711290959450</updated>
       <workItem from="1711290962117" duration="365000" />
       <workItem from="1711291685032" duration="21000" />
-      <workItem from="1711315492952" duration="15219000" />
+      <workItem from="1711315492952" duration="15698000" />
     </task>
     <servers />
   </component>
