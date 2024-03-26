@@ -10,6 +10,25 @@ Kaitlyn Garneau 101263516
 Troll Talk is a type racer game themed on the movie _Trolls_
 It will include concepts such as user accounts. Picking a character as your avatar and typing against other people. There will also be an online multiplayer chat.
 
+**Screenshots** 
+Sign-in page:
+![TrollTalkLogin](https://github.com/garnkai/trolltalk/assets/122396273/af05fc51-469e-46f7-b600-73669d517764)
+
+Homepage:
+![TrollTalkHomePage](https://github.com/garnkai/trolltalk/assets/122396273/6917d869-7150-4485-a0fe-65c84b7293da)
+
+Lobby option:
+![TrollTalkLobby](https://github.com/garnkai/trolltalk/assets/122396273/1831b0ef-93f5-4f2c-ae2d-bf6f3315fa2f)
+
+Create lobby:
+![TrollTalkCreateLobby](https://github.com/garnkai/trolltalk/assets/122396273/4c30c1eb-d169-4fc3-8dfb-218098be5797)
+
+Chat Lobby:
+![TrollTalkChatLobby](https://github.com/garnkai/trolltalk/assets/122396273/5698a58c-691b-4122-8237-145e1f17d7f5)
+
+Typerace:
+![TrollTalkTypeRace](https://github.com/garnkai/trolltalk/assets/122396273/134c7533-160b-4dac-b014-9b1dd844722d)
+
 
 **Done**
 - All pages were linked
